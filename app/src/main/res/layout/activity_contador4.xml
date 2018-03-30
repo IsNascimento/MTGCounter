@@ -27,7 +27,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:background="@android:color/transparent"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton4"
+        app:layout_constraintEnd_toStartOf="@+id/maisVidaJogador4"
         app:layout_constraintStart_toEndOf="@+id/maisVidaJogador2"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/btn_minus" />
@@ -54,7 +54,7 @@
         android:layout_marginStart="32dp"
         android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton2"
+        app:layout_constraintEnd_toStartOf="@+id/menosVidaJogador3"
         app:layout_constraintStart_toEndOf="@+id/menosVidaJogador1"
         app:srcCompat="@android:drawable/btn_plus" />
 
@@ -62,17 +62,17 @@
         android:id="@+id/vidaJogador2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="94dp"
         android:fontFamily="sans-serif-smallcaps"
         android:rotation="-180"
         android:text="vida"
         android:textSize="36sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton3" />
+        app:layout_constraintEnd_toStartOf="@+id/vidaJogador4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/maisVidaJogador2" />
 
     <TextView
         android:id="@+id/vidaJogador1"
@@ -86,7 +86,7 @@
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/menosVidaJogador1"
-        app:layout_constraintEnd_toStartOf="@+id/textView"
+        app:layout_constraintEnd_toStartOf="@+id/vidaJogador3"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
@@ -98,9 +98,9 @@
         android:layout_marginTop="8dp"
         android:background="@android:color/transparent"
         android:tint="@android:color/holo_green_dark"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintBottom_toTopOf="@+id/vidaJogador3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vidaJogador2"
+        app:layout_constraintTop_toBottomOf="@+id/vidaJogador4"
         app:srcCompat="@android:drawable/ic_popup_sync" />
 
     <Button
@@ -114,7 +114,7 @@
         android:text="sort"
         app:layout_constraintBottom_toTopOf="@+id/vidaJogador1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/vidaJogador2" />
 
     <TextView
         android:id="@+id/sortValor"
@@ -128,10 +128,10 @@
         app:layout_constraintBottom_toTopOf="@+id/vidaJogador1"
         app:layout_constraintEnd_toStartOf="@+id/botaoResetar"
         app:layout_constraintStart_toEndOf="@+id/sort"
-        app:layout_constraintTop_toBottomOf="@+id/vidaJogador2" />
+        app:layout_constraintTop_toBottomOf="@+id/vidaJogador4" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/vidaJogador3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="94dp"
@@ -141,12 +141,12 @@
         android:text="vida"
         android:textSize="36sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton"
+        app:layout_constraintBottom_toTopOf="@+id/maisVidaJogador3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/vidaJogador1" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/maisVidaJogador3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
@@ -155,11 +155,11 @@
         android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageButton2"
+        app:layout_constraintStart_toEndOf="@+id/menosVidaJogador3"
         app:srcCompat="@android:drawable/btn_plus" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/menosVidaJogador3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
@@ -167,28 +167,28 @@
         android:layout_marginStart="16dp"
         android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton"
+        app:layout_constraintEnd_toStartOf="@+id/maisVidaJogador3"
         app:layout_constraintStart_toEndOf="@+id/maisVidaJogador1"
         app:srcCompat="@android:drawable/btn_minus" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/vidaJogador4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="50dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="94dp"
         android:fontFamily="sans-serif-smallcaps"
         android:rotation="-180"
         android:text="vida"
         android:textSize="36sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/vidaJogador2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/maisVidaJogador2" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/vidaJogador2"
+        app:layout_constraintTop_toBottomOf="@+id/menosVidaJogador4" />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/menosVidaJogador4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -196,12 +196,12 @@
         android:layout_marginTop="32dp"
         android:background="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageButton4"
+        app:layout_constraintStart_toEndOf="@+id/maisVidaJogador4"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/btn_minus" />
 
     <ImageButton
-        android:id="@+id/imageButton4"
+        android:id="@+id/maisVidaJogador4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
