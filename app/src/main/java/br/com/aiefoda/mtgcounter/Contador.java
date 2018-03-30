@@ -3,8 +3,11 @@ package br.com.aiefoda.mtgcounter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import java.util.Random;
 
 
 public class Contador extends AppCompatActivity {
@@ -14,7 +17,20 @@ public class Contador extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contador);
+        switch (conf.getJogadores()){
+            case 2:
+                setContentView(R.layout.activity_contador);
+                break;
+            case 3:
+                setContentView(R.layout.activity_contador3);
+                break;
+            case 4:
+                setContentView(R.layout.activity_contador4);
+                break;
+            default:
+                setContentView(R.layout.activity_contador);
+        }
+
 
             final TextView marca = findViewById(R.id.vidaJogador1);
             final Jogador jogador1 = new Jogador();
@@ -55,6 +71,16 @@ public class Contador extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 marca2.setText(Integer.toString(jogador2.menosVida()));
+            }
+        });
+
+        Button sortear = findViewById(R.id.sort);
+        sortear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView sortValor = findViewById(R.id.sortValor);
+                Random sorteio = new Random();
+                sortValor.setText(Integer.toString(sorteio.nextInt(conf.getFacesDado()) + 1));
             }
         });
 
