@@ -1,5 +1,7 @@
 package br.com.aiefoda.mtgcounter;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,13 +13,13 @@ import java.util.Random;
 
 
 public class Contador extends AppCompatActivity {
-
-    Configuracao conf = new Configuracao();
+    SharedPreferences prefencias;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        switch (conf.getJogadores()) {
+        prefencias = getSharedPreferences("pref",0);
+        switch (prefencias.getInt("jogadores",2)){
             case 2:
                 setContentView(R.layout.activity_contador);
                 break;
@@ -42,16 +44,16 @@ public class Contador extends AppCompatActivity {
         final TextView marca4 = findViewById(R.id.vidaJogador4);
 
 
-        jogador1.setVida(conf.getVida());
+        jogador1.setVida(prefencias.getInt("vida",20));
         marca.setText(Integer.toString(jogador1.getVida()));
-        jogador2.setVida(conf.getVida());
+        jogador2.setVida(prefencias.getInt("vida",20));
         marca2.setText(Integer.toString(jogador2.getVida()));
-        if (conf.getJogadores() > 2) {
-            jogador3.setVida(conf.getVida());
+         if(prefencias.getInt("jogadores",2) > 2){
+            jogador3.setVida(prefencias.getInt("vida",20));
             marca3.setText(Integer.toString(jogador3.getVida()));
         }
-        if(conf.getJogadores() > 3) {
-            jogador4.setVida(conf.getVida());
+        if (prefencias.getInt("jogadores",2) > 3){
+            jogador4.setVida(prefencias.getInt("vida",20));
             marca4.setText(Integer.toString(jogador4.getVida()));
         }
 
@@ -93,31 +95,38 @@ public class Contador extends AppCompatActivity {
                 public void onClick(View v) {
                     TextView sortValor = findViewById(R.id.sortValor);
                     Random sorteio = new Random();
-                    sortValor.setText(Integer.toString(sorteio.nextInt(conf.getFacesDado()) + 1));
+                    sortValor.setText(Integer.toString(sorteio.nextInt((prefencias.getInt("dado",6))) + 1));
                 }
             });
 
-            ImageButton reset = findViewById(R.id.botaoResetar);
+            final ImageButton reset = findViewById(R.id.botaoResetar);
             reset.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    marca2.setText(Integer.toString(conf.getVida()));
-                    marca.setText(Integer.toString(conf.getVida()));
-                    jogador1.setVida(conf.getVida());
-                    jogador2.setVida(conf.getVida());
-                    if (conf.getJogadores() > 2){
-                        marca3.setText(Integer.toString(conf.getVida()));
-                        jogador3.setVida(conf.getVida());
+                    marca2.setText(Integer.toString(prefencias.getInt("vida",20)));
+                    marca.setText(Integer.toString(prefencias.getInt("vida",20)));
+                    jogador1.setVida(prefencias.getInt("vida",20));
+                    jogador2.setVida(prefencias.getInt("vida",20));
+                    if (prefencias.getInt("jogadores",2) > 2){
+                        marca3.setText(Integer.toString(prefencias.getInt("vida",20)));
+                        jogador3.setVida(prefencias.getInt("vida",20));
                     }
-                    if (conf.getJogadores() > 3){
-                        marca4.setText(Integer.toString(conf.getVida()));
-                        jogador4.setVida(conf.getVida());
+                    if (prefencias.getInt("jogadores",2) > 3){
+                        marca4.setText(Integer.toString(prefencias.getInt("vida",20)));
+                        jogador4.setVida(prefencias.getInt("vida",20));
                     }
-
                 }
             });
 
-            if (conf.getJogadores() > 2){
+            ImageButton config = findViewById(R.id.configuracao);
+            config.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                            startActivity(new Intent(Contador.this, Configuracao.class));
+                            }
+            });
+
+             if (prefencias.getInt("jogadores",2) > 2){
                 ImageButton botaoMais3 = findViewById(R.id.maisVidaJogador3);
                 botaoMais3.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -135,7 +144,7 @@ public class Contador extends AppCompatActivity {
                 });
 
             }
-            if (conf.getJogadores() > 3){
+             if (prefencias.getInt("jogadores",2) > 3){
                 ImageButton botaoMais4 = findViewById(R.id.maisVidaJogador4);
                 botaoMais4.setOnClickListener(new View.OnClickListener() {
                     @Override
