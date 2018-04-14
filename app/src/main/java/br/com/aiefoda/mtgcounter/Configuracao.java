@@ -142,15 +142,6 @@ public class Configuracao extends AppCompatActivity{
             }
         });
 
-
-        Button salvar = findViewById(R.id.salvar);
-        salvar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Configuracao.this, Contador.class));
-            }
-        });
-
     }
 
     public void setVida(int vida) {

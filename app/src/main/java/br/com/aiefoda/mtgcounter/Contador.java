@@ -103,18 +103,8 @@ public class Contador extends AppCompatActivity {
             reset.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    marca2.setText(Integer.toString(prefencias.getInt("vida",20)));
-                    marca.setText(Integer.toString(prefencias.getInt("vida",20)));
-                    jogador1.setVida(prefencias.getInt("vida",20));
-                    jogador2.setVida(prefencias.getInt("vida",20));
-                    if (prefencias.getInt("jogadores",2) > 2){
-                        marca3.setText(Integer.toString(prefencias.getInt("vida",20)));
-                        jogador3.setVida(prefencias.getInt("vida",20));
-                    }
-                    if (prefencias.getInt("jogadores",2) > 3){
-                        marca4.setText(Integer.toString(prefencias.getInt("vida",20)));
-                        jogador4.setVida(prefencias.getInt("vida",20));
-                    }
+                    finish();
+                    startActivity(getIntent());
                 }
             });
 
