@@ -10,9 +10,14 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:text="Vida"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -20,9 +25,14 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:text="Nº Jogadores"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -30,39 +40,53 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:text="Faces Dado"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
         android:id="@+id/vidaTodos"
-        android:layout_width="wrap_content"
+        android:layout_width="20dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginTop="32dp"
-        android:text="TextView"
+        android:text="20"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/vidaMais"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/jogadores"
-        android:layout_width="wrap_content"
+        android:layout_width="20dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginTop="32dp"
-        android:text="TextView"
+        android:text="2"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/maisJogadores"
         app:layout_constraintTop_toBottomOf="@+id/vidaTodos" />
 
     <TextView
         android:id="@+id/dado"
-        android:layout_width="wrap_content"
+        android:layout_width="20dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="28dp"
-        android:text="TextView"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="32dp"
+        android:text="6"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/maisDado"
         app:layout_constraintTop_toBottomOf="@+id/jogadores" />
 
@@ -71,71 +95,74 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="91dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:background="@android:color/transparent"
         app:layout_constraintEnd_toStartOf="@+id/vidaTodos"
-        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/btn_minus" />
+        app:srcCompat="@drawable/ic_remove_circle_black_24dp" />
 
     <ImageButton
         android:id="@+id/menosJogadores"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="33dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
         android:background="@android:color/transparent"
         app:layout_constraintEnd_toStartOf="@+id/jogadores"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/vidaMenos"
-        app:srcCompat="@android:drawable/btn_minus" />
+        app:srcCompat="@drawable/ic_remove_circle_black_24dp" />
 
     <ImageButton
         android:id="@+id/menosDado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="46dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
         android:background="@android:color/transparent"
         app:layout_constraintEnd_toStartOf="@+id/dado"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/menosJogadores"
-        app:srcCompat="@android:drawable/btn_minus" />
+        app:srcCompat="@drawable/ic_remove_circle_black_24dp" />
 
     <ImageButton
         android:id="@+id/vidaMais"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="32dp"
         android:layout_marginTop="32dp"
         android:background="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/btn_plus" />
+        app:srcCompat="@drawable/ic_add_circle_black_24dp" />
 
     <ImageButton
         android:id="@+id/maisJogadores"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="32dp"
         android:background="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/vidaMais"
-        app:srcCompat="@android:drawable/btn_plus" />
+        app:srcCompat="@drawable/ic_add_circle_black_24dp" />
 
     <ImageButton
         android:id="@+id/maisDado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="32dp"
         android:background="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/maisJogadores"
-        app:srcCompat="@android:drawable/btn_plus" />
+        app:srcCompat="@drawable/ic_add_circle_black_24dp" />
 
 </android.support.constraint.ConstraintLayout>

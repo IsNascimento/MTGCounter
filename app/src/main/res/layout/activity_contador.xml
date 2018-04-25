@@ -8,107 +8,136 @@
 
     <ImageButton
         android:id="@+id/maisVidaJogador2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/vidaJogador2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/btn_plus" />
+        app:layout_constraintVertical_bias="0.19"
+        app:srcCompat="@drawable/ic_mais" />
 
     <ImageButton
         android:id="@+id/menosVidaJogador2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/vidaJogador2"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/btn_minus" />
+        app:layout_constraintVertical_bias="0.19999999"
+        app:srcCompat="@drawable/ic_menos" />
 
     <ImageButton
         android:id="@+id/menosVidaJogador1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:layout_marginStart="32dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/vidaJogador1"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@android:drawable/btn_minus" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.8"
+        app:srcCompat="@drawable/ic_menos" />
 
     <ImageButton
         android:id="@+id/maisVidaJogador1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/btn_plus" />
+        app:layout_constraintStart_toEndOf="@+id/vidaJogador1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.8"
+        app:srcCompat="@drawable/ic_mais" />
 
     <TextView
         android:id="@+id/vidaJogador2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="163dp"
         android:layout_marginStart="163dp"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="sans-serif-smallcaps"
         android:rotation="-180"
-        android:text="TextView"
-        android:textSize="30sp"
+        android:text="20"
+        android:textColor="@android:color/black"
+        android:textSize="60sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.19999999" />
 
     <TextView
         android:id="@+id/vidaJogador1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="180dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="163dp"
         android:layout_marginStart="163dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="TextView"
-        android:textSize="30sp"
+        android:text="20"
+        android:textColor="@android:color/black"
+        android:textSize="60sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.8" />
 
     <ImageButton
         android:id="@+id/botaoResetar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="130dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="37dp"
-        android:layout_marginTop="137dp"
+        android:layout_marginTop="8dp"
         android:background="@android:color/transparent"
         android:tint="@android:color/holo_green_dark"
-        app:layout_constraintBottom_toTopOf="@+id/maisVidaJogador1"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/configuracao"
-        app:layout_constraintTop_toBottomOf="@+id/menosVidaJogador2"
-        app:layout_constraintVertical_bias="0.433"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_popup_sync" />
 
     <Button
         android:id="@+id/sort"
         android:layout_width="72dp"
         android:layout_height="35dp"
-        android:layout_marginBottom="142dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="142dp"
+        android:layout_marginTop="8dp"
         android:background="@android:color/transparent"
-        android:text="sort"
+        android:text="Sorte"
         android:textColor="@android:color/holo_green_dark"
-        app:layout_constraintBottom_toTopOf="@+id/menosVidaJogador1"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/maisVidaJogador2" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/sortValor"
@@ -118,11 +147,14 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/vidaJogador1"
+        android:text="1"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/botaoResetar"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toEndOf="@+id/sort"
-        app:layout_constraintTop_toBottomOf="@+id/vidaJogador2" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/configuracao"
@@ -133,9 +165,17 @@
         android:layout_marginTop="8dp"
         android:background="@android:color/transparent"
         android:tint="@android:color/darker_gray"
-        app:layout_constraintBottom_toTopOf="@+id/vidaJogador1"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vidaJogador2"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_preferences" />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="449dp">
+
+    </android.support.design.widget.TextInputLayout>
 
 </android.support.constraint.ConstraintLayout>
