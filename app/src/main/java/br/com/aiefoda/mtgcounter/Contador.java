@@ -15,7 +15,7 @@ import java.util.Random;
 
 public class Contador extends AppCompatActivity {
     SharedPreferences prefencias;
-    private MediaPlayer musica = MediaPlayer.create(this, R.raw.alok);
+
 
 
     @Override
@@ -72,9 +72,8 @@ public class Contador extends AppCompatActivity {
         botaoMenos1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                musica.start();
                 marca.setText(Integer.toString(jogador1.menosVida()));
-
+                tocarMenosVida();
             }
         });
 
@@ -158,6 +157,14 @@ public class Contador extends AppCompatActivity {
             });
 
         }
+    }
+
+    public void tocarMenosVida(){
+        MediaPlayer musica = MediaPlayer.create(this, R.raw.choriugann);
+        musica.prepareAsync();
+        musica.start();
+        musica.stop();
+
     }
 }
 
