@@ -16,6 +16,10 @@ import java.util.Random;
 
 public class Contador extends AppCompatActivity {
     SharedPreferences prefencias;
+<<<<<<< HEAD
+=======
+
+>>>>>>> b8ca989fc6f8311b1b7573ea3acd4a0ac287620e
 
 
     @Override
@@ -96,7 +100,9 @@ public class Contador extends AppCompatActivity {
         botaoMais1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                tocarMaisVida();
                 marca.setText(Integer.toString(jogador1.maisVida()));
+
             }
         });
 
@@ -104,6 +110,15 @@ public class Contador extends AppCompatActivity {
         botaoMenos1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+<<<<<<< HEAD
+=======
+                if (jogador1.getVida() == 1){
+                    tocarYouLose();
+                } else {
+                    tocarMenosVida();
+                }
+
+>>>>>>> b8ca989fc6f8311b1b7573ea3acd4a0ac287620e
                 marca.setText(Integer.toString(jogador1.menosVida()));
 
             }
@@ -113,6 +128,7 @@ public class Contador extends AppCompatActivity {
         botaoMais2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                tocarMaisVida();
                 marca2.setText(Integer.toString(jogador2.maisVida()));
             }
         });
@@ -121,6 +137,11 @@ public class Contador extends AppCompatActivity {
         botaoMenos2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (jogador1.getVida() == 1){
+                    tocarYouLose();
+                } else {
+                    tocarSoco();
+                }
                 marca2.setText(Integer.toString(jogador2.menosVida()));
             }
         });
@@ -139,6 +160,7 @@ public class Contador extends AppCompatActivity {
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+<<<<<<< HEAD
                 jogador1.setNome(nome1.getText().toString());
                 prefencias
                         .edit()
@@ -167,6 +189,9 @@ public class Contador extends AppCompatActivity {
                             .apply();
                 }
 
+=======
+                tocarRoud();
+>>>>>>> b8ca989fc6f8311b1b7573ea3acd4a0ac287620e
                 finish();
                 startActivity(getIntent());
             }
@@ -186,6 +211,7 @@ public class Contador extends AppCompatActivity {
             botaoMais3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    tocarMaisVida();
                     marca3.setText(Integer.toString(jogador3.maisVida()));
                 }
             });
@@ -194,6 +220,11 @@ public class Contador extends AppCompatActivity {
             botaoMenos3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (jogador1.getVida() == 1){
+                        tocarYouLose();
+                    } else {
+                        tocarSoco();
+                    }
                     marca3.setText(Integer.toString(jogador3.menosVida()));
                 }
             });
@@ -204,6 +235,7 @@ public class Contador extends AppCompatActivity {
             botaoMais4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    tocarMaisVida();
                     marca4.setText(Integer.toString(jogador4.maisVida()));
                 }
             });
@@ -213,11 +245,76 @@ public class Contador extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
 
+                    if (jogador1.getVida() == 1){
+                        tocarYouLose();
+                    } else {
+                        tocarSoco();
+                    }
                     marca4.setText(Integer.toString(jogador4.menosVida()));
                 }
             });
 
         }
     }
-}
 
+    public void tocarMenosVida(){
+        Random escolher = new Random();
+        int i = escolher.nextInt(3);
+        switch(i) {
+            case 0:
+                tocarSoco();
+                break;
+            case 1:
+                tocarHadouken();
+                break;
+            case 2:
+                tocarChoriugann();
+            case 3:
+                tocarTatagtaruguen();
+            default:
+
+
+        }
+    }
+
+    public void tocarSoco(){
+        MediaPlayer musica = MediaPlayer.create(this, R.raw.soco);
+        musica.seekTo(1);
+        musica.start();
+
+    }
+    public void tocarRoud(){
+        MediaPlayer musica = MediaPlayer.create(this, R.raw.round);
+        musica.start();
+
+    }
+    public void tocarHadouken(){
+        MediaPlayer musica = MediaPlayer.create(this, R.raw.hadouken);
+
+        musica.start();
+
+    }
+    public void tocarYouLose(){
+        MediaPlayer musica = MediaPlayer.create(this, R.raw.lose);
+
+        musica.start();
+
+    }
+    public void tocarChoriugann(){
+        MediaPlayer musica = MediaPlayer.create(this, R.raw.choriugann);
+
+        musica.start();
+
+    }
+    public void tocarTatagtaruguen(){
+        MediaPlayer musica = MediaPlayer.create(this, R.raw.tatagtaruguen);
+
+        musica.start();
+
+    }
+    public void tocarMaisVida(){
+        MediaPlayer musica = MediaPlayer.create(this, R.raw.moedamario);
+
+        musica.start();
+    }
+}
