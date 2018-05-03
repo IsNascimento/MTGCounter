@@ -103,7 +103,7 @@ public class Contador extends AppCompatActivity {
         botaoMais1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //tocarMaisVida();
+                tocarMaisVida();
                 marca.setText(Integer.toString(jogador1.maisVida()));
 
             }
@@ -113,14 +113,9 @@ public class Contador extends AppCompatActivity {
         botaoMenos1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-<<<<<<< HEAD
 
-                if (jogador1.getVida() == 1){
-              //      tocarYouLose();
-=======
                 if (jogador1.getVida() == 0){
                     tocarYouLose();
->>>>>>> 7488496e707b0984f75db197538cacf1a50e37bc
                 } else {
                     tocarMenosVida();
                 }
@@ -134,7 +129,7 @@ public class Contador extends AppCompatActivity {
         botaoMais2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            //    tocarMaisVida();
+                tocarMaisVida();
                 marca2.setText(Integer.toString(jogador2.maisVida()));
             }
         });
@@ -143,17 +138,11 @@ public class Contador extends AppCompatActivity {
         botaoMenos2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-<<<<<<< HEAD
-                if (jogador1.getVida() == 1){
-                //    tocarYouLose();
-                } else {
-                //    tocarSoco();
-=======
+
                 if (jogador1.getVida() == 0){
                     tocarYouLose();
                 } else {
                     tocarMenosVida();
->>>>>>> 7488496e707b0984f75db197538cacf1a50e37bc
                 }
                 marca2.setText(Integer.toString(jogador2.menosVida()));
             }
@@ -203,26 +192,9 @@ public class Contador extends AppCompatActivity {
                 }
 
 
-              //  tocarRoud();
+                tocarRoud();
 
-               /* final Configuracao configuracao = new Configuracao();
-                configuracao.rodarNaThreadDoBanco(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (jogador1 != null) {
-                            configuracao.inserirJogador(jogador1);
-                        }
-                        if(jogador2 != null) {
-                            configuracao.inserirJogador(jogador2);
-                        }
-                        if (jogador3 != null) {
-                           configuracao.inserirJogador(jogador3);
-                        }
-                        if (jogador4 != null){
-                           configuracao.inserirJogador(jogador4);
-                        }
-                    }
-                });*/
+
 
                 finish();
                 startActivity(getIntent());
@@ -243,7 +215,7 @@ public class Contador extends AppCompatActivity {
             botaoMais3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                   // tocarMaisVida();
+                    tocarMaisVida();
                     marca3.setText(Integer.toString(jogador3.maisVida()));
                 }
             });
@@ -253,13 +225,10 @@ public class Contador extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     if (jogador1.getVida() == 1){
-                 //       tocarYouLose();
+                        tocarYouLose();
                     } else {
-<<<<<<< HEAD
-               //         tocarSoco();
-=======
+
                         tocarMenosVida();
->>>>>>> 7488496e707b0984f75db197538cacf1a50e37bc
                     }
                     marca3.setText(Integer.toString(jogador3.menosVida()));
                 }
@@ -271,7 +240,7 @@ public class Contador extends AppCompatActivity {
             botaoMais4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-             //       tocarMaisVida();
+                    tocarMaisVida();
                     marca4.setText(Integer.toString(jogador4.maisVida()));
                 }
             });
@@ -282,13 +251,10 @@ public class Contador extends AppCompatActivity {
                 public void onClick(View v) {
 
                     if (jogador1.getVida() == 1){
-                       // tocarYouLose();
+                        tocarYouLose();
                     } else {
-<<<<<<< HEAD
-                        //tocarSoco();
-=======
+
                         tocarMenosVida();
->>>>>>> 7488496e707b0984f75db197538cacf1a50e37bc
                     }
                     marca4.setText(Integer.toString(jogador4.menosVida()));
                 }
@@ -305,23 +271,18 @@ public class Contador extends AppCompatActivity {
         int i = escolher.nextInt(3);
         switch(i) {
             case 0:
-            //    tocarSoco();
+                   tocarSoco();
                 break;
             case 1:
-                //   tocarHadouken();
+                   tocarHadouken();
                 break;
             case 2:
-<<<<<<< HEAD
-             //   tocarChoriugann();
-            case 3:
-             //   tocarTatagtaruguen();
-=======
+
                 tocarChoriugann();
                 break;
             case 3:
                 tocarTatagtaruguen();
                 break;
->>>>>>> 7488496e707b0984f75db197538cacf1a50e37bc
             default:
                 tocarSoco();
                 break;
@@ -338,7 +299,7 @@ public class Contador extends AppCompatActivity {
         soco = MediaPlayer.create(this, R.raw.soco);
         tatagtaruguen = MediaPlayer.create(this, R.raw.tatagtaruguen);
     }
-    /*
+
     public void tocarSoco(){
         soco.start();
     }
@@ -369,15 +330,11 @@ public class Contador extends AppCompatActivity {
         tatagtaruguen.start();
     }
 
-<<<<<<< HEAD
-        musica.start();
-    }*/
-=======
+
     public void tocarMaisVida(){
         if(moedamario == null) {
             this.criaTracks();
         }
         moedamario.start();
     }
->>>>>>> 7488496e707b0984f75db197538cacf1a50e37bc
 }
