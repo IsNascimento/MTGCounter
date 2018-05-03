@@ -3,6 +3,8 @@ package br.com.aiefoda.mtgcounter;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,10 +14,15 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.Random;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 
 public class Contador extends AppCompatActivity {
     SharedPreferences prefencias;
+
+    private Handler handlerThreadPrincipal;
+    private Executor executorThreadDoBanco;
 
     MediaPlayer choriugann = null;
     MediaPlayer hadouken = null;
@@ -42,6 +49,9 @@ public class Contador extends AppCompatActivity {
             default:
                 setContentView(R.layout.activity_contador);
         }
+
+        handlerThreadPrincipal = new Handler(Looper.getMainLooper());
+        executorThreadDoBanco = Executors.newSingleThreadExecutor();
 
         final Jogador jogador1 = new Jogador();
         final Jogador jogador2 = new Jogador();
@@ -191,15 +201,30 @@ public class Contador extends AppCompatActivity {
                             .apply();
                 }
 
+                rodarNaThreadDoBanco(new Runnable() {
+                    @Override
+                    public void run() {
+                        BancoJogadores banco = BancoJogadores.obterInstanciaUnica(Contador.this);
+                        JogadoresDao jogadores = banco.jogadoresDao();
+                        jogadores.inserir(jogador1);
+                        jogadores.inserir(jogador2);
+                        if(jogador3 != null) {
+                            jogadores.inserir(jogador3);
+                        }
+                        if ((jogador4 != null)) {
+                            jogadores.inserir(jogador4);
+                        }
 
+                        finish();
+                    }
+                });
                 tocarRoud();
-
-
-
                 finish();
                 startActivity(getIntent());
             }
         });
+
+
 
         ImageButton config = findViewById(R.id.configuracao);
         config.setOnClickListener(new View.OnClickListener() {
@@ -336,5 +361,12 @@ public class Contador extends AppCompatActivity {
             this.criaTracks();
         }
         moedamario.start();
+    }
+    void rodarNaThreadPrincipal(Runnable acao) {
+        handlerThreadPrincipal.post(acao);
+    }
+
+    void rodarNaThreadDoBanco(Runnable acao) {
+        executorThreadDoBanco.execute(acao);
     }
 }

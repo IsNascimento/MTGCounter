@@ -25,9 +25,6 @@ import java.util.Map;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-/**
- * Created by anderson p m on 23/03/2018.
- */
 
 public class Configuracao extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
