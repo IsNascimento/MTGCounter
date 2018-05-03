@@ -1,11 +1,12 @@
 package br.com.aiefoda.mtgcounter;
 
-/**
- * Created by anderson p m on 23/03/2018.
- */
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 
+@Entity
 public class Jogador {
-
+    @PrimaryKey(autoGenerate = true)
+    public int id;
     private int vida = 0;
     private String nome;
 

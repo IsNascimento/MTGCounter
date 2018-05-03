@@ -16,10 +16,7 @@ import java.util.Random;
 
 public class Contador extends AppCompatActivity {
     SharedPreferences prefencias;
-<<<<<<< HEAD
-=======
 
->>>>>>> b8ca989fc6f8311b1b7573ea3acd4a0ac287620e
 
 
     @Override
@@ -100,7 +97,7 @@ public class Contador extends AppCompatActivity {
         botaoMais1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tocarMaisVida();
+                //tocarMaisVida();
                 marca.setText(Integer.toString(jogador1.maisVida()));
 
             }
@@ -110,15 +107,13 @@ public class Contador extends AppCompatActivity {
         botaoMenos1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-<<<<<<< HEAD
-=======
+
                 if (jogador1.getVida() == 1){
-                    tocarYouLose();
+              //      tocarYouLose();
                 } else {
                     tocarMenosVida();
                 }
 
->>>>>>> b8ca989fc6f8311b1b7573ea3acd4a0ac287620e
                 marca.setText(Integer.toString(jogador1.menosVida()));
 
             }
@@ -128,7 +123,7 @@ public class Contador extends AppCompatActivity {
         botaoMais2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tocarMaisVida();
+            //    tocarMaisVida();
                 marca2.setText(Integer.toString(jogador2.maisVida()));
             }
         });
@@ -138,9 +133,9 @@ public class Contador extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (jogador1.getVida() == 1){
-                    tocarYouLose();
+                //    tocarYouLose();
                 } else {
-                    tocarSoco();
+                //    tocarSoco();
                 }
                 marca2.setText(Integer.toString(jogador2.menosVida()));
             }
@@ -160,7 +155,7 @@ public class Contador extends AppCompatActivity {
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-<<<<<<< HEAD
+
                 jogador1.setNome(nome1.getText().toString());
                 prefencias
                         .edit()
@@ -173,7 +168,7 @@ public class Contador extends AppCompatActivity {
                         .putString("nome2",jogador2.getNome())
                         .apply();
 
-                if (prefencias.getInt("jogadores", 2) > 2) {
+                if (prefencias.getInt("jogadores", 2) > 2 && jogador3 != null && nome3 != null) {
                     jogador3.setNome(nome3.getText().toString());
                     prefencias
                             .edit()
@@ -181,7 +176,7 @@ public class Contador extends AppCompatActivity {
                             .apply();
                 }
 
-                if (prefencias.getInt("jogadores", 2) > 3) {
+                if (prefencias.getInt("jogadores", 2) > 3 && jogador4 != null && nome4 != null) {
                     jogador4.setNome(nome4.getText().toString());
                     prefencias
                             .edit()
@@ -189,9 +184,28 @@ public class Contador extends AppCompatActivity {
                             .apply();
                 }
 
-=======
-                tocarRoud();
->>>>>>> b8ca989fc6f8311b1b7573ea3acd4a0ac287620e
+
+              //  tocarRoud();
+
+               /* final Configuracao configuracao = new Configuracao();
+                configuracao.rodarNaThreadDoBanco(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (jogador1 != null) {
+                            configuracao.inserirJogador(jogador1);
+                        }
+                        if(jogador2 != null) {
+                            configuracao.inserirJogador(jogador2);
+                        }
+                        if (jogador3 != null) {
+                           configuracao.inserirJogador(jogador3);
+                        }
+                        if (jogador4 != null){
+                           configuracao.inserirJogador(jogador4);
+                        }
+                    }
+                });*/
+
                 finish();
                 startActivity(getIntent());
             }
@@ -211,7 +225,7 @@ public class Contador extends AppCompatActivity {
             botaoMais3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    tocarMaisVida();
+                   // tocarMaisVida();
                     marca3.setText(Integer.toString(jogador3.maisVida()));
                 }
             });
@@ -221,9 +235,9 @@ public class Contador extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     if (jogador1.getVida() == 1){
-                        tocarYouLose();
+                 //       tocarYouLose();
                     } else {
-                        tocarSoco();
+               //         tocarSoco();
                     }
                     marca3.setText(Integer.toString(jogador3.menosVida()));
                 }
@@ -235,7 +249,7 @@ public class Contador extends AppCompatActivity {
             botaoMais4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    tocarMaisVida();
+             //       tocarMaisVida();
                     marca4.setText(Integer.toString(jogador4.maisVida()));
                 }
             });
@@ -246,9 +260,9 @@ public class Contador extends AppCompatActivity {
                 public void onClick(View v) {
 
                     if (jogador1.getVida() == 1){
-                        tocarYouLose();
+                       // tocarYouLose();
                     } else {
-                        tocarSoco();
+                        //tocarSoco();
                     }
                     marca4.setText(Integer.toString(jogador4.menosVida()));
                 }
@@ -262,21 +276,21 @@ public class Contador extends AppCompatActivity {
         int i = escolher.nextInt(3);
         switch(i) {
             case 0:
-                tocarSoco();
+            //    tocarSoco();
                 break;
             case 1:
-                tocarHadouken();
+                //   tocarHadouken();
                 break;
             case 2:
-                tocarChoriugann();
+             //   tocarChoriugann();
             case 3:
-                tocarTatagtaruguen();
+             //   tocarTatagtaruguen();
             default:
 
 
         }
     }
-
+    /*
     public void tocarSoco(){
         MediaPlayer musica = MediaPlayer.create(this, R.raw.soco);
         musica.seekTo(1);
@@ -316,5 +330,5 @@ public class Contador extends AppCompatActivity {
         MediaPlayer musica = MediaPlayer.create(this, R.raw.moedamario);
 
         musica.start();
-    }
+    }*/
 }
