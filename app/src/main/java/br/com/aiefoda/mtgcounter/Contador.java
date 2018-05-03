@@ -16,7 +16,13 @@ import java.util.Random;
 public class Contador extends AppCompatActivity {
     SharedPreferences prefencias;
 
-
+    MediaPlayer choriugann = null;
+    MediaPlayer hadouken = null;
+    MediaPlayer lose = null;
+    MediaPlayer moedamario = null;
+    MediaPlayer round = null;
+    MediaPlayer soco = null;
+    MediaPlayer tatagtaruguen = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +80,7 @@ public class Contador extends AppCompatActivity {
         botaoMenos1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (jogador1.getVida() == 1){
+                if (jogador1.getVida() == 0){
                     tocarYouLose();
                 } else {
                     tocarMenosVida();
@@ -98,10 +104,10 @@ public class Contador extends AppCompatActivity {
         botaoMenos2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (jogador1.getVida() == 1){
+                if (jogador1.getVida() == 0){
                     tocarYouLose();
                 } else {
-                    tocarSoco();
+                    tocarMenosVida();
                 }
                 marca2.setText(Integer.toString(jogador2.menosVida()));
             }
@@ -152,7 +158,7 @@ public class Contador extends AppCompatActivity {
                     if (jogador1.getVida() == 1){
                         tocarYouLose();
                     } else {
-                        tocarSoco();
+                        tocarMenosVida();
                     }
                     marca3.setText(Integer.toString(jogador3.menosVida()));
                 }
@@ -177,7 +183,7 @@ public class Contador extends AppCompatActivity {
                     if (jogador1.getVida() == 1){
                         tocarYouLose();
                     } else {
-                        tocarSoco();
+                        tocarMenosVida();
                     }
                     marca4.setText(Integer.toString(jogador4.menosVida()));
                 }
@@ -187,6 +193,9 @@ public class Contador extends AppCompatActivity {
     }
 
     public void tocarMenosVida(){
+        if(soco == null) {
+            this.criaTracks();
+        }
         Random escolher = new Random();
         int i = escolher.nextInt(3);
         switch(i) {
@@ -198,52 +207,61 @@ public class Contador extends AppCompatActivity {
                 break;
             case 2:
                 tocarChoriugann();
+                break;
             case 3:
                 tocarTatagtaruguen();
+                break;
             default:
-
-
+                tocarSoco();
+                break;
         }
+
+    }
+
+    private void criaTracks() {
+        choriugann = MediaPlayer.create(this, R.raw.choriugann);
+        hadouken = MediaPlayer.create(this, R.raw.hadouken);
+        lose = MediaPlayer.create(this, R.raw.lose);
+        moedamario = MediaPlayer.create(this, R.raw.moedamario);
+        round = MediaPlayer.create(this, R.raw.round);
+        soco = MediaPlayer.create(this, R.raw.soco);
+        tatagtaruguen = MediaPlayer.create(this, R.raw.tatagtaruguen);
     }
 
     public void tocarSoco(){
-        MediaPlayer musica = MediaPlayer.create(this, R.raw.soco);
-        musica.seekTo(1);
-        musica.start();
-
+        soco.start();
     }
+
     public void tocarRoud(){
-        MediaPlayer musica = MediaPlayer.create(this, R.raw.round);
-        musica.start();
-
+        if(round == null) {
+            this.criaTracks();
+        }
+        round.start();
     }
+
     public void tocarHadouken(){
-        MediaPlayer musica = MediaPlayer.create(this, R.raw.hadouken);
-
-        musica.start();
-
+        hadouken.start();
     }
+
     public void tocarYouLose(){
-        MediaPlayer musica = MediaPlayer.create(this, R.raw.lose);
-
-        musica.start();
-
+        if(lose == null) {
+            this.criaTracks();
+        }
+        lose.start();
     }
+
     public void tocarChoriugann(){
-        MediaPlayer musica = MediaPlayer.create(this, R.raw.choriugann);
-
-        musica.start();
-
+        choriugann.start();
     }
+
     public void tocarTatagtaruguen(){
-        MediaPlayer musica = MediaPlayer.create(this, R.raw.tatagtaruguen);
-
-        musica.start();
-
+        tatagtaruguen.start();
     }
-    public void tocarMaisVida(){
-        MediaPlayer musica = MediaPlayer.create(this, R.raw.moedamario);
 
-        musica.start();
+    public void tocarMaisVida(){
+        if(moedamario == null) {
+            this.criaTracks();
+        }
+        moedamario.start();
     }
 }
