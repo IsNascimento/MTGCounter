@@ -1,12 +1,6 @@
 package br.com.aiefoda.mtgcounter;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
-
-@Entity
 public class Jogador {
-    @PrimaryKey(autoGenerate = true)
-    public int id;
     private int vida = 0;
     private String nome;
 
@@ -27,5 +21,9 @@ public class Jogador {
     }
     public Integer menosVida(){
         return --vida;
+    }
+
+    public String toString() {
+        return this.getNome() + ": " + String.valueOf(this.getVida());
     }
 }

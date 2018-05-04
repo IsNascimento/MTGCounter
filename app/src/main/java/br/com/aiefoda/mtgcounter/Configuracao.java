@@ -12,6 +12,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -26,8 +27,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 
-public class Configuracao extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
+public class Configuracao extends AppCompatActivity {
 
     SharedPreferences preferencias;
 
@@ -35,22 +35,9 @@ public class Configuracao extends AppCompatActivity
     private int jogadores;
     private int facesDado;
 
-    static Object tranca = new Object();
-
-    private static BancoJogadores banco;
-
-    static BancoJogadores bancoJogadores(Context context) {
-        synchronized (tranca) {
-            if (banco == null)
-                banco = Room.databaseBuilder(context,
-                        BancoJogadores.class, "base-1").build();
-            return banco;
-        }
-    }
     private List<Map<String, String>> listaAtual;
     private Handler handlerThreadPrincipal;
     private Executor executorThreadDoBanco;
-    private BancoJogadores base;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,8 +46,6 @@ public class Configuracao extends AppCompatActivity
 
         handlerThreadPrincipal = new Handler(Looper.getMainLooper());
         executorThreadDoBanco = Executors.newSingleThreadExecutor();
-
-        base = bancoJogadores(getApplicationContext());
 
         preferencias = getSharedPreferences("pref",0);
         vida = preferencias.getInt("vida",20);
@@ -176,28 +161,33 @@ public class Configuracao extends AppCompatActivity
             }
         });
 
+        rodarNaThreadDoBanco(new Runnable() {
+            @Override
+            public void run() {
+                BancoDeDados banco = BancoDeDados.getInstancia(Configuracao.this);
+                PartidaDao partidaDao = banco.getPartidaDao();
+                final List<Partida> partidas = partidaDao.listar();
+
+                rodarNaThreadPrincipal(new Runnable() {
+                    @Override
+                    public void run() {
+                        ArrayAdapter<Partida> adaptador = new ArrayAdapter<>(Configuracao.this,
+                                android.R.layout.simple_list_item_1, partidas);
+                        ListView listaResultados = findViewById(R.id.listaResultados);
+                        listaResultados.setAdapter(adaptador);
+                    }
+                });
+
+            }
+        });
+
     }
 
-    private void preencherConteúdo() {
-        ListView visaoLista = findViewById(R.id.visaoLista);
-
-        if (listaAtual == null) {
-            visaoLista.setAdapter(null);
-            return;
-        }
-
-        SimpleAdapter adapter = new SimpleAdapter(this, listaAtual, android.R.layout.simple_list_item_1, new String[]{"nome"}, new int[]{android.R.id.text1});
-        visaoLista.setAdapter(adapter);
-    }
-
-    public void rodarNaThreadPrincipal(Runnable acao) {
+    void rodarNaThreadPrincipal(Runnable acao) {
         handlerThreadPrincipal.post(acao);
     }
 
-    public void rodarNaThreadDoBanco(Runnable acao) {
-        /*if (executorThreadDoBanco == null){
-            executorThreadDoBanco = Executors.newSingleThreadExecutor();
-        }*/
+    void rodarNaThreadDoBanco(Runnable acao) {
         executorThreadDoBanco.execute(acao);
     }
 
@@ -225,36 +215,4 @@ public class Configuracao extends AppCompatActivity
         this.facesDado = facesDado;
     }
 
-    public void inserirJogador(Jogador jogador){
-        JogadoresDao dao = base.jogadoresDao();
-        dao.inserir(jogador);
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-        rodarNaThreadDoBanco(
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        JogadoresDao dao = base.jogadoresDao();
-                        List<Jogador> jogadores = dao.listar();
-                        listaAtual = new ArrayList<>();
-                        for (Jogador j : jogadores) {
-                            Map<String, String> mapaJogadores = new HashMap<>();
-                            mapaJogadores.put("nome", j.getNome());
-                            mapaJogadores.put("vida", "" + j.getVida());
-                            listaAtual.add(mapaJogadores);
-                        }
-                        rodarNaThreadPrincipal(new Runnable() {
-                            @Override
-                            public void run() {
-                                preencherConteúdo();
-                            }
-                        });
-                    }
-                });
-
-        return false;
-    }
 }

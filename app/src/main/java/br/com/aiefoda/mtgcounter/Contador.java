@@ -201,30 +201,26 @@ public class Contador extends AppCompatActivity {
                             .apply();
                 }
 
+                final Partida partida = new Partida(jogador1, jogador2, jogador3, jogador4);
+
                 rodarNaThreadDoBanco(new Runnable() {
                     @Override
                     public void run() {
-                        BancoJogadores banco = BancoJogadores.obterInstanciaUnica(Contador.this);
-                        JogadoresDao jogadores = banco.jogadoresDao();
-                        jogadores.inserir(jogador1);
-                        jogadores.inserir(jogador2);
-                        if(jogador3 != null) {
-                            jogadores.inserir(jogador3);
-                        }
-                        if ((jogador4 != null)) {
-                            jogadores.inserir(jogador4);
-                        }
-
-                        finish();
+                        BancoDeDados banco = BancoDeDados.getInstancia(Contador.this);
+                        PartidaDao partidaDao = banco.getPartidaDao();
+                        partidaDao.inserir(partida);
+                        rodarNaThreadPrincipal(new Runnable() {
+                            @Override
+                            public void run() {
+                                tocarRoud();
+                                finish();
+                                startActivity(getIntent());
+                            }
+                        });
                     }
                 });
-                tocarRoud();
-                finish();
-                startActivity(getIntent());
             }
         });
-
-
 
         ImageButton config = findViewById(R.id.configuracao);
         config.setOnClickListener(new View.OnClickListener() {

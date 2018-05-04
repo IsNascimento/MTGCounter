@@ -7,10 +7,10 @@ import android.arch.persistence.room.Query;
 import java.util.List;
 
 @Dao
-public interface JogadoresDao {
+public interface PartidaDao {
     @Insert
-    void inserir(Jogador jogadores);
+    void inserir(Partida partida);
 
-    @Query("SELECT * from Jogador")
-    List<Jogador> listar();
+    @Query("SELECT * from Partida")
+    List<Partida> listar();
 }
