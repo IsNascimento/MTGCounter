@@ -63,7 +63,7 @@ public class Contador extends AppCompatActivity {
         final TextView marca3 = findViewById(R.id.vidaJogador3);
         final TextView marca4 = findViewById(R.id.vidaJogador4);
         final EditText nome1 = findViewById(R.id.nome1);
-        final EditText nome2 = findViewById(R.id.nome3);
+        final EditText nome2 = findViewById(R.id.nome2);
         final EditText nome3 = findViewById(R.id.nome3);
         final EditText nome4 = findViewById(R.id.nome4);
         nome2.setOnClickListener(new View.OnClickListener() {
