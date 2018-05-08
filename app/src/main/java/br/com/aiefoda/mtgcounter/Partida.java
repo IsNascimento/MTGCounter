@@ -24,8 +24,7 @@ public class Partida {
     }
 
     Partida(Jogador jogador1, Jogador jogador2, Jogador jogador3, Jogador jogador4) {
-        //data = DateFormat.getDateInstance().format(new Date());
-        SimpleDateFormat formataData = new SimpleDateFormat("dd/mm/yyyy");
+        SimpleDateFormat formataData = new SimpleDateFormat("dd/MM/yyyy");
         data = formataData.format(new Date(System.currentTimeMillis()));
         this.jogador1 = jogador1.toString();
         this.jogador2 = jogador2.toString();

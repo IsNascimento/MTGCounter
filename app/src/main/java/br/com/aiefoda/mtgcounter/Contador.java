@@ -63,7 +63,7 @@ public class Contador extends AppCompatActivity {
         final TextView marca3 = findViewById(R.id.vidaJogador3);
         final TextView marca4 = findViewById(R.id.vidaJogador4);
         final EditText nome1 = findViewById(R.id.nome1);
-        final EditText nome2 = findViewById(R.id.nome2);
+        final EditText nome2 = findViewById(R.id.nome3);
         final EditText nome3 = findViewById(R.id.nome3);
         final EditText nome4 = findViewById(R.id.nome4);
         nome2.setOnClickListener(new View.OnClickListener() {
@@ -124,14 +124,12 @@ public class Contador extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                marca.setText(Integer.toString(jogador1.menosVida()));
                 if (jogador1.getVida() == 0){
                     tocarYouLose();
                 } else {
                     tocarMenosVida();
                 }
-
-                marca.setText(Integer.toString(jogador1.menosVida()));
-
             }
         });
 
@@ -149,12 +147,12 @@ public class Contador extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (jogador1.getVida() == 0){
+                marca2.setText(Integer.toString(jogador2.menosVida()));
+                if (jogador2.getVida() == 0){
                     tocarYouLose();
                 } else {
                     tocarMenosVida();
                 }
-                marca2.setText(Integer.toString(jogador2.menosVida()));
             }
         });
 
@@ -203,22 +201,22 @@ public class Contador extends AppCompatActivity {
 
                 final Partida partida = new Partida(jogador1, jogador2, jogador3, jogador4);
 
-                rodarNaThreadDoBanco(new Runnable() {
-                    @Override
-                    public void run() {
-                        BancoDeDados banco = BancoDeDados.getInstancia(Contador.this);
-                        PartidaDao partidaDao = banco.getPartidaDao();
-                        partidaDao.inserir(partida);
-                        rodarNaThreadPrincipal(new Runnable() {
-                            @Override
-                            public void run() {
-                                tocarRoud();
-                                finish();
-                                startActivity(getIntent());
-                            }
-                        });
+                if(jogador1.getVida() == 0 | jogador2.getVida() == 0) {
+                    salvaPartidaNoBanco(partida);
+                } else {
+                    if(jogador3.getNome() != null && jogador3.getVida() == 0) {
+                        salvaPartidaNoBanco(partida);
+                    } else {
+                        if(jogador4.getNome() != null && jogador4.getVida() == 0) {
+                            salvaPartidaNoBanco(partida);
+                        } else {
+                            tocarRoud();
+                            finish();
+                            startActivity(getIntent());
+                        }
                     }
-                });
+                }
+
             }
         });
 
@@ -245,13 +243,13 @@ public class Contador extends AppCompatActivity {
             botaoMenos3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (jogador1.getVida() == 1){
+                    marca3.setText(Integer.toString(jogador3.menosVida()));
+                    if (jogador3.getVida() == 0){
                         tocarYouLose();
                     } else {
 
                         tocarMenosVida();
                     }
-                    marca3.setText(Integer.toString(jogador3.menosVida()));
                 }
             });
 
@@ -271,17 +269,38 @@ public class Contador extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
 
-                    if (jogador1.getVida() == 1){
+                    marca4.setText(Integer.toString(jogador4.menosVida()));
+                    if (jogador4.getVida() == 0){
                         tocarYouLose();
                     } else {
 
                         tocarMenosVida();
                     }
-                    marca4.setText(Integer.toString(jogador4.menosVida()));
                 }
             });
 
         }
+    }
+
+
+    private void salvaPartidaNoBanco(final Partida partida) {
+        rodarNaThreadDoBanco(new Runnable() {
+            @Override
+            public void run() {
+                BancoDeDados banco = BancoDeDados.getInstancia(Contador.this);
+                PartidaDao partidaDao = banco.getPartidaDao();
+                partidaDao.inserir(partida);
+                rodarNaThreadPrincipal(new Runnable() {
+                    @Override
+                    public void run() {
+                        tocarRoud();
+                        finish();
+                        startActivity(getIntent());
+                    }
+                });
+            }
+        });
+
     }
 
     public void tocarMenosVida(){

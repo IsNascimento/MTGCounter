@@ -20,7 +20,11 @@ public class Jogador {
         return ++vida;
     }
     public Integer menosVida(){
-        return --vida;
+        if(this.vida == 0) {
+            return 0;
+        } else {
+            return --vida;
+        }
     }
 
     public String toString() {

@@ -11,6 +11,6 @@ public interface PartidaDao {
     @Insert
     void inserir(Partida partida);
 
-    @Query("SELECT * from Partida")
+    @Query("SELECT * from Partida order by 1 desc")
     List<Partida> listar();
 }
