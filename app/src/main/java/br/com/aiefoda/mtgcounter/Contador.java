@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -32,11 +33,12 @@ public class Contador extends AppCompatActivity {
     MediaPlayer round = null;
     MediaPlayer soco = null;
     MediaPlayer tatagtaruguen = null;
+    MediaPlayer mortal = null;
+    MediaPlayer top = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // set para tela ficar sempre on.
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         prefencias = getSharedPreferences("pref", 0);
         switch (prefencias.getInt("jogadores", 2)) {
@@ -118,7 +120,6 @@ public class Contador extends AppCompatActivity {
             public void onClick(View v) {
                 tocarMaisVida();
                 marca.setText(Integer.toString(jogador1.maisVida()));
-
             }
         });
 
@@ -202,6 +203,18 @@ public class Contador extends AppCompatActivity {
                             .apply();
                 }
 
+                //Log.i("***+", "reset: mortal is play: " + mortal.isPlaying());
+                //Log.i("***+", "reset: top is play: " + top.isPlaying());
+                if (top.isPlaying()) {
+                    top.stop();
+                    //Log.i("***+", "reset: top parou: " + ! top.isPlaying());
+                }
+                if (mortal.isPlaying()){
+                    mortal.stop();
+                    //Log.i("***+", "reset: mortal parou: " + ! mortal.isPlaying());
+                }
+
+
                 final Partida partida = new Partida(jogador1, jogador2, jogador3, jogador4);
 
                 if(jogador1.getVida() == 0 | jogador2.getVida() == 0) {
@@ -227,6 +240,12 @@ public class Contador extends AppCompatActivity {
         config.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (top != null ){
+                    Log.i("***+", "config top is play: " + top.isPlaying());
+                }
+                if (mortal != null){
+                    Log.i("***+", "config mortal is play: " + mortal.isPlaying());
+                }
                 startActivity(new Intent(Contador.this, Configuracao.class));
             }
         });
@@ -250,7 +269,6 @@ public class Contador extends AppCompatActivity {
                     if (jogador3.getVida() == 0){
                         tocarYouLose();
                     } else {
-
                         tocarMenosVida();
                     }
                 }
@@ -276,14 +294,16 @@ public class Contador extends AppCompatActivity {
                     if (jogador4.getVida() == 0){
                         tocarYouLose();
                     } else {
-
                         tocarMenosVida();
                     }
                 }
             });
 
         }
+        tocarFundo();
     }
+
+
 
 
     private void salvaPartidaNoBanco(final Partida partida) {
@@ -303,30 +323,32 @@ public class Contador extends AppCompatActivity {
                 });
             }
         });
-
     }
 
     public void tocarMenosVida(){
-        if(soco == null) {
-            this.criaTracks();
-        }
+        //Log.i("**+", "Chamou - vida");
         Random escolher = new Random();
-        int i = escolher.nextInt(3);
+        int i = escolher.nextInt(4);
+        View asd = findViewById(R.id.fundo2);
         switch(i) {
             case 0:
-                   tocarSoco();
+                asd.setBackground(getDrawable(R.drawable.soco));
+                tocarSoco();
                 break;
             case 1:
-                   tocarHadouken();
+                asd.setBackground(getDrawable(R.drawable.haduken2));
+                tocarHadouken();
                 break;
             case 2:
-
+                asd.setBackground(getDrawable(R.drawable.shoriuguen));
                 tocarChoriugann();
                 break;
             case 3:
+                asd.setBackground(getDrawable(R.drawable.tekoteko));
                 tocarTatagtaruguen();
                 break;
             default:
+                asd.setBackground(getDrawable(R.drawable.soco));
                 tocarSoco();
                 break;
         }
@@ -334,13 +356,15 @@ public class Contador extends AppCompatActivity {
     }
 
     private void criaTracks() {
-        choriugann = MediaPlayer.create(this, R.raw.choriugann);
-        hadouken = MediaPlayer.create(this, R.raw.hadouken);
-        lose = MediaPlayer.create(this, R.raw.lose);
-        moedamario = MediaPlayer.create(this, R.raw.moedamario);
-        round = MediaPlayer.create(this, R.raw.round);
-        soco = MediaPlayer.create(this, R.raw.soco);
-        tatagtaruguen = MediaPlayer.create(this, R.raw.tatagtaruguen);
+        this.choriugann = MediaPlayer.create(this, R.raw.choriugann);
+        this.hadouken = MediaPlayer.create(this, R.raw.hadouken);
+        this.lose = MediaPlayer.create(this, R.raw.lose);
+        this.moedamario = MediaPlayer.create(this, R.raw.moedamario);
+        this.round = MediaPlayer.create(this, R.raw.round);
+        this.soco = MediaPlayer.create(this, R.raw.soco);
+        this.tatagtaruguen = MediaPlayer.create(this, R.raw.tatagtaruguen);
+        this.mortal = MediaPlayer.create(this, R.raw.mortal);
+        this.top = MediaPlayer.create(this, R.raw.top);
     }
 
     public void tocarSoco(){
@@ -348,10 +372,38 @@ public class Contador extends AppCompatActivity {
     }
 
     public void tocarRoud(){
-        if(round == null) {
-            this.criaTracks();
-        }
         round.start();
+    }
+
+    public void tocarFundo() {
+        if (mortal == null){
+            criaTracks();
+        }
+        int i = prefencias.getInt("fundo", 0);
+        switch (i) {
+            case 0:
+                if (top.isPlaying()) {
+                    Log.i("***+", "tocarFundo: caso 0 top is play: " + top.isPlaying());
+                }
+                if (mortal.isPlaying()){
+                    Log.i("***+", "tocarFundo: caso 0 mortal is play: " + mortal.isPlaying());
+                }
+                break;
+            case 1:
+                if (this.mortal != null){
+                    this.mortal.start();
+                    //Log.i("***+", "tocarFundo: caso 1 mortal is play: " + mortal.isPlaying());
+                    mortal.setLooping(true);
+                }
+                break;
+            case 2:
+                if (this.top != null){
+                    this.top.start();
+                    //Log.i("***+", "tocarFundo: caso 2 top is play: " + top.isPlaying());
+                    top.setLooping(true);
+                }
+                break;
+        }
     }
 
     public void tocarHadouken(){
@@ -359,9 +411,8 @@ public class Contador extends AppCompatActivity {
     }
 
     public void tocarYouLose(){
-        if(lose == null) {
-            this.criaTracks();
-        }
+        View asd = findViewById(R.id.fundo2);
+        asd.setBackground(getDrawable(R.drawable.youlose));
         lose.start();
     }
 
@@ -373,12 +424,9 @@ public class Contador extends AppCompatActivity {
         tatagtaruguen.start();
     }
 
-
     public void tocarMaisVida(){
-        if(moedamario == null) {
-            this.criaTracks();
-        }
         moedamario.start();
+        //Log.i("**+", "chamou + vida");
     }
     void rodarNaThreadPrincipal(Runnable acao) {
         handlerThreadPrincipal.post(acao);

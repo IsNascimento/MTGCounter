@@ -34,6 +34,7 @@ public class Configuracao extends AppCompatActivity {
     private int vida;
     private int jogadores;
     private int facesDado;
+    private int fundo;
 
     private List<Map<String, String>> listaAtual;
     private Handler handlerThreadPrincipal;
@@ -47,10 +48,11 @@ public class Configuracao extends AppCompatActivity {
         handlerThreadPrincipal = new Handler(Looper.getMainLooper());
         executorThreadDoBanco = Executors.newSingleThreadExecutor();
 
-        preferencias = getSharedPreferences("pref",0);
-        vida = preferencias.getInt("vida",20);
-        jogadores = preferencias.getInt("jogadores",2);
-        facesDado = preferencias.getInt("dado",6);
+        preferencias = getSharedPreferences("pref", 0);
+        vida = preferencias.getInt("vida", 20);
+        jogadores = preferencias.getInt("jogadores", 2);
+        facesDado = preferencias.getInt("dado", 6);
+        fundo = preferencias.getInt("fundo", 0);
 
         final TextView vidaT = findViewById(R.id.vidaTodos);
         vidaT.setText(String.valueOf(getVida()));
@@ -58,18 +60,20 @@ public class Configuracao extends AppCompatActivity {
         jogadores.setText(String.valueOf(getJogadores()));
         final TextView dado = findViewById(R.id.dado);
         dado.setText(String.valueOf(getFacesDado()));
+        final TextView fundo = findViewById(R.id.fundo);
+        fundo.setText(String.valueOf(getFundo()));
 
         final ImageButton vidaMa = findViewById(R.id.vidaMais);
         vidaMa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (getVida() < 30){
+                if (getVida() < 30) {
                     int x = getVida();
                     ++x;
                     setVida(x);
                     preferencias
                             .edit()
-                            .putInt("vida",x)
+                            .putInt("vida", x)
                             .apply();
                 }
                 vidaT.setText(String.valueOf(getVida()));
@@ -80,13 +84,13 @@ public class Configuracao extends AppCompatActivity {
         vidaMe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (getVida() > 20){
+                if (getVida() > 20) {
                     int x = getVida();
                     --x;
                     setVida(x);
                     preferencias
                             .edit()
-                            .putInt("vida",x)
+                            .putInt("vida", x)
                             .apply();
                 }
                 vidaT.setText(String.valueOf(getVida()));
@@ -97,13 +101,13 @@ public class Configuracao extends AppCompatActivity {
         maisJoga.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(getJogadores() < 4){
+                if (getJogadores() < 4) {
                     int x = getJogadores();
                     ++x;
                     setJogadores(x);
                     preferencias
                             .edit()
-                            .putInt("jogadores",x)
+                            .putInt("jogadores", x)
                             .apply();
                 }
                 jogadores.setText(String.valueOf(getJogadores()));
@@ -114,13 +118,13 @@ public class Configuracao extends AppCompatActivity {
         menosJoga.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (getJogadores() > 2){
+                if (getJogadores() > 2) {
                     int x = getJogadores();
                     --x;
                     setJogadores(x);
                     preferencias
                             .edit()
-                            .putInt("jogadores",x)
+                            .putInt("jogadores", x)
                             .apply();
                 }
                 jogadores.setText(String.valueOf(getJogadores()));
@@ -131,13 +135,13 @@ public class Configuracao extends AppCompatActivity {
         menosDad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (getFacesDado() > 6){
+                if (getFacesDado() > 6) {
                     int x = getFacesDado();
                     --x;
                     setFacesDado(x);
                     preferencias
                             .edit()
-                            .putInt("dado",x)
+                            .putInt("dado", x)
                             .apply();
                 }
                 dado.setText(String.valueOf(getFacesDado()));
@@ -148,13 +152,13 @@ public class Configuracao extends AppCompatActivity {
         maisDad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (getFacesDado() < 20){
+                if (getFacesDado() < 20) {
                     int x = getFacesDado();
                     ++x;
                     setFacesDado(x);
                     preferencias
                             .edit()
-                            .putInt("dado",x)
+                            .putInt("dado", x)
                             .apply();
                 }
                 dado.setText(String.valueOf(getFacesDado()));
@@ -181,9 +185,43 @@ public class Configuracao extends AppCompatActivity {
             }
         });
 
-    }
 
-    void rodarNaThreadPrincipal(Runnable acao) {
+        ImageView maisFundo = findViewById(R.id.maisfundo);
+        maisFundo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (getFundo() < 2) {
+                    int x = getFundo();
+                    ++x;
+                    setFundo(x);
+                    preferencias
+                            .edit()
+                            .putInt("fundo", x)
+                            .apply();
+                }
+                fundo.setText(String.valueOf(getFundo()));
+            }
+        });
+
+        ImageView menosFundo = findViewById(R.id.menosfundo);
+        menosFundo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (getFundo() > 0) {
+                    int x = getFundo();
+                    --x;
+                    setFundo(x);
+                    preferencias
+                            .edit()
+                            .putInt("fundo", x)
+                            .apply();
+                }
+                fundo.setText(String.valueOf(getFundo()));
+            }
+        });
+
+    }
+        void rodarNaThreadPrincipal(Runnable acao) {
         handlerThreadPrincipal.post(acao);
     }
 
@@ -215,4 +253,7 @@ public class Configuracao extends AppCompatActivity {
         this.facesDado = facesDado;
     }
 
+    public int getFundo() { return fundo; }
+
+    public void setFundo(int fundo) { this.fundo = fundo; }
 }

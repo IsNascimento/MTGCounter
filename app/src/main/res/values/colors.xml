@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#3F51B5</color>
+    <color name="cinza">#848484</color>
+    <color name="haduken">#FF8000</color>
+    <color name="shoriugen">#DF3A01</color>
+    <color name="tekoteko">#DF0101</color>
+    <color name="preto">#000000</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 </resources>

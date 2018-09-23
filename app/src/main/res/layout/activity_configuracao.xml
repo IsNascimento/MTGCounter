@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context="br.com.aiefoda.mtgcounter.Contador">
 
+    <ImageButton
+        android:id="@+id/maisDado2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="32dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/maisJogadores"
+        app:srcCompat="@drawable/ic_add_circle_black_24dp" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -133,6 +144,20 @@
         app:srcCompat="@drawable/ic_remove_circle_black_24dp" />
 
     <ImageButton
+        android:id="@+id/menosDado2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintEnd_toStartOf="@+id/dado"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menosJogadores"
+        app:srcCompat="@drawable/ic_remove_circle_black_24dp" />
+
+    <ImageButton
         android:id="@+id/vidaMais"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -168,7 +193,7 @@
     <ListView
         android:id="@+id/listaResultados"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="324dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -184,10 +209,60 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="50dp"
         android:text="Histórico"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="Musica Fundo"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/fundo"
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="32dp"
+        android:text="0"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/maisfundo"
+        app:layout_constraintTop_toBottomOf="@+id/dado" />
+
+    <ImageButton
+        android:id="@+id/menosfundo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="32dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintEnd_toStartOf="@+id/fundo"
+        app:layout_constraintTop_toBottomOf="@+id/menosDado"
+        app:srcCompat="@drawable/ic_remove_circle_black_24dp" />
+
+    <ImageButton
+        android:id="@+id/maisfundo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="32dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/maisDado2"
+        app:srcCompat="@drawable/ic_add_circle_black_24dp" />
 
 </android.support.constraint.ConstraintLayout>
